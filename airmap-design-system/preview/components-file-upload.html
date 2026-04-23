@@ -1,0 +1,109 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:18px;background:#F7F7F7;font-family:var(--font-sans, 'Geist', sans-serif);color:#171717;-webkit-font-smoothing:antialiased}
+  .stack{display:flex;flex-direction:column;gap:10px;max-width:460px}
+
+  /* ---------- Drop zone ---------- */
+  .drop{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 20px;background:#fff;border:1px dashed #D1D1D1;border-radius:12px;text-align:center;transition:border-color .15s, background .15s}
+  .drop:hover{border-color:#A3A3A3;background:#FCFCFC}
+  .drop .ic{width:40px;height:40px;border-radius:10px;background:#F5F5F5;border:1px solid #EBEBEB;display:inline-flex;align-items:center;justify-content:center;margin-bottom:12px;color:#5C5C5C;font-size:20px}
+  .drop .title{font-size:14px;line-height:20px;font-weight:500;color:#171717;letter-spacing:-0.006em}
+  .drop .hint{font-size:12px;line-height:16px;font-weight:400;color:#7B7B7B;margin-top:2px}
+  .drop .btn{margin-top:12px;display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 12px;border-radius:8px;background:#171717;color:#fff;font-size:12px;line-height:1;font-weight:500;letter-spacing:-0.006em;border:0;cursor:pointer}
+  .drop .btn:hover{background:#000}
+
+  /* ---------- File row ---------- */
+  .row{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #EBEBEB;border-radius:10px;padding:12px}
+  .row.err{border-color:rgba(251,55,72,0.45);background:#FFFCFC}
+
+  /* Document chip — tall rectangle with folded corner */
+  .chip{position:relative;width:32px;height:40px;border-radius:4px;background:#fff;border:1px solid #D1D1D1;display:flex;align-items:flex-end;justify-content:center;flex-shrink:0;padding-bottom:5px;box-shadow:0 1px 0 rgba(23,23,23,0.02)}
+  .chip::before{content:'';position:absolute;top:0;right:0;width:10px;height:10px;background:linear-gradient(225deg, #F7F7F7 50%, transparent 50%);border-left:1px solid #D1D1D1;border-bottom:1px solid #D1D1D1;border-top-right-radius:4px}
+  .chip .kind{font-family:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;font-size:9px;line-height:1;font-weight:600;letter-spacing:0.02em;padding:2px 4px;border-radius:2px;color:#fff}
+  .chip.pdf .kind{background:#FB3748}
+  .chip.md  .kind{background:#171717}
+  .chip.doc .kind{background:#5C5C5C}
+
+  .body{flex:1;min-width:0;padding-top:1px}
+  .name{font-size:14px;line-height:20px;font-weight:500;color:#171717;letter-spacing:-0.006em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .meta{margin-top:3px;display:flex;align-items:center;gap:6px;font-size:12px;line-height:16px;font-weight:400;color:#7B7B7B;flex-wrap:wrap}
+  .meta .stat{display:inline-flex;align-items:center;gap:4px;font-weight:500;color:#171717}
+  .meta .stat i{font-size:13px;line-height:1}
+  .stat.ok{color:#1DAF61}
+  .stat.fail{color:#FB3748}
+  .stat.up{color:#5C5C5C;font-weight:400}
+  .dot{width:2px;height:2px;border-radius:999px;background:#A3A3A3}
+
+  .x{width:24px;height:24px;border-radius:6px;color:#A3A3A3;font-size:15px;cursor:pointer;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;margin:-2px -4px 0 0}
+  .x:hover{background:#F5F5F5;color:#5C5C5C}
+  .row.err .x{color:#FB3748}
+  .row.err .x:hover{background:#FFEBEC;color:#FB3748}
+
+  .progress{margin-top:10px;height:4px;background:#F5F5F5;border-radius:999px;overflow:hidden}
+  .progress > span{display:block;height:100%;background:#171717;border-radius:999px;width:24%;transition:width .2s}
+
+  .link{display:inline-flex;align-items:center;gap:3px;font-size:12px;line-height:16px;font-weight:500;color:#FB3748;cursor:pointer;margin-top:6px;letter-spacing:-0.006em}
+  .link:hover{text-decoration:underline}
+  .link i{font-size:13px;line-height:1}
+
+  .spin{animation:spin 0.9s linear infinite;display:inline-flex}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style></head>
+<body>
+<div class="stack">
+
+  <div class="drop">
+    <span class="ic"><i class="ri-upload-cloud-2-line"></i></span>
+    <div class="title">Drop files or paste a link</div>
+    <div class="hint">PDF, Markdown, or URL — up to 50&nbsp;MB</div>
+    <button class="btn">Choose file</button>
+  </div>
+
+  <div class="row">
+    <div class="chip pdf"><span class="kind">PDF</span></div>
+    <div class="body">
+      <div class="name">Competitor-pricing-2026.pdf</div>
+      <div class="meta">
+        <span>0.3 MB of 1.2 MB</span>
+        <span class="dot"></span>
+        <span class="stat up"><span class="spin"><i class="ri-loader-4-line"></i></span> Uploading</span>
+      </div>
+      <div class="progress"><span></span></div>
+    </div>
+    <span class="x"><i class="ri-close-line"></i></span>
+  </div>
+
+  <div class="row">
+    <div class="chip md"><span class="kind">MD</span></div>
+    <div class="body">
+      <div class="name">narrative-draft-v3.md</div>
+      <div class="meta">
+        <span>84&nbsp;KB</span>
+        <span class="dot"></span>
+        <span class="stat ok"><i class="ri-checkbox-circle-fill"></i> Added</span>
+      </div>
+    </div>
+    <span class="x"><i class="ri-delete-bin-line"></i></span>
+  </div>
+
+  <div class="row err">
+    <div class="chip pdf"><span class="kind">PDF</span></div>
+    <div class="body">
+      <div class="name">Q3-board-report.pdf</div>
+      <div class="meta">
+        <span>3.4&nbsp;MB</span>
+        <span class="dot"></span>
+        <span class="stat fail"><i class="ri-error-warning-fill"></i> Failed — file is encrypted</span>
+      </div>
+      <span class="link">Try again <i class="ri-arrow-right-line"></i></span>
+    </div>
+    <span class="x"><i class="ri-delete-bin-line"></i></span>
+  </div>
+
+</div>
+</body></html>

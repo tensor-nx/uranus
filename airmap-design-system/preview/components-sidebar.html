@@ -1,0 +1,42 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="../colors_and_type.css"><style>
+  /* Figma: Sidebar / AI Template — 272px, 20/14/14/14 padding, 16 gap, radius-8 items */
+  body{margin:0;padding:16px;background:#F7F7F7;font-family:var(--font-sans)}
+  .sb{width:272px;background:#fff;border:1px solid #EBEBEB;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:12px}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:0 6px}
+  .logo{width:26px;height:26px}
+  .icon-btn{width:28px;height:28px;border-radius:8px;display:grid;place-items:center;color:#A3A3A3;cursor:pointer}
+  .icon-btn:hover{background:#F5F5F5;color:#171717}
+  .search{display:flex;align-items:center;gap:8px;padding:8px 10px;background:#F5F5F5;border-radius:8px;font:400 13px/16px var(--font-sans);color:#A3A3A3}
+  .search svg{width:14px;height:14px}
+  .grp{display:flex;flex-direction:column;gap:4px}
+  .item{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;font:500 13px/16px var(--font-sans);color:#171717;cursor:pointer;letter-spacing:-0.006em;transition:background .12s}
+  .item svg{width:16px;height:16px;color:#5C5C5C;flex-shrink:0}
+  .item:hover{background:#F5F5F5}
+  .item.active{background:#EBEBEB;box-shadow:inset 0 0 0 1px rgba(23,23,23,0.04);color:#171717}
+  .item.active:hover{background:#E5E5E5}
+  .item.active svg{color:#171717}
+  .subh{font:500 11px/14px var(--font-sans);color:#A3A3A3;padding:4px 10px;letter-spacing:0}
+  .rec{padding:7px 10px;border-radius:8px;font:400 13px/16px var(--font-sans);color:#5C5C5C;cursor:pointer}
+  .rec:hover{background:#F5F5F5;color:#171717}
+  .sep{height:1px;background:#EBEBEB;margin:2px 0}
+</style></head><body>
+  <div class="sb">
+    <div class="top">
+      <img src="../assets/AM-Icon-Dark.svg" class="logo" alt="Airmap">
+      <div class="icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16"/></svg></div>
+    </div>
+    <div class="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>Search…</div>
+    <div class="grp">
+      <div class="item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M12 5v14M5 12h14"/></svg>New map</div>
+      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 6h16M4 12h16M4 18h10"/></svg>Maps</div>
+      <div class="item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg>Projects</div>
+    </div>
+    <div class="sep"></div>
+    <div class="grp">
+      <div class="subh">Yesterday</div>
+      <div class="rec">Market trends analysis</div>
+      <div class="rec">Usability testing results</div>
+      <div class="rec">Competitive analysis</div>
+    </div>
+  </div>
+</body></html>

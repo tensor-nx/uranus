@@ -1,0 +1,25 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css"><style>
+  body{margin:0;padding:18px;background:#F7F7F7;font-family:var(--font-sans);display:flex;flex-direction:column;gap:14px}
+  .stage{position:relative;background:#fff;border:1px solid #EBEBEB;border-radius:16px;height:140px;overflow:hidden;padding:12px 16px;box-sizing:border-box}
+  .cols{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;height:100%}
+  .cols span{background:rgba(23,23,23,0.04);border-radius:4px}
+  .meta{font:500 11px/14px var(--font-mono);color:var(--fg-3);display:flex;justify-content:space-between;align-items:center}
+  .sb{display:flex;gap:0;height:110px;border:1px solid #EBEBEB;border-radius:12px;overflow:hidden;background:#fff}
+  .sb .col{padding:14px;font:500 12px/16px var(--font-sans);color:var(--fg-2)}
+  .sb .nav{width:160px;background:#F7F7F7;border-right:1px solid #EBEBEB;color:var(--fg)}
+  .sb .main{flex:1}
+  .sb .ctx{width:200px;border-left:1px solid #EBEBEB}
+  .w{font-weight:500}
+</style></head><body>
+  <div class="meta"><span>12-col fluid grid · 16px gutter · max-width 1200</span><span>desktop</span></div>
+  <div class="stage"><div class="cols"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div></div>
+  <div class="meta"><span>App shell: nav · main · context</span><span>272 · fluid · 320</span></div>
+  <div class="sb">
+    <div class="col nav"><div class="w">Navigation</div>272px · collapsible</div>
+    <div class="col main"><div class="w" style="color:var(--fg)">Main canvas</div>fluid · 24px padding</div>
+    <div class="col ctx"><div class="w" style="color:var(--fg)">Context panel</div>320px · togglable</div>
+  </div>
+</body></html>

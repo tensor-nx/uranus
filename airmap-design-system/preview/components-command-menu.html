@@ -1,0 +1,164 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+  body{margin:0;padding:24px;background:#F7F7F7;font-family:var(--font-sans, 'Geist', sans-serif);color:#171717;-webkit-font-smoothing:antialiased}
+
+  /* ---------- Container ---------- */
+  .cm{
+    width:560px;background:#fff;border-radius:16px;
+    box-shadow:
+      0 1px 2px rgba(10,13,20,0.04),
+      0 12px 24px -8px rgba(10,13,20,0.08),
+      0 32px 64px -16px rgba(10,13,20,0.12);
+    border:1px solid #EBEBEB;overflow:hidden;
+  }
+
+  /* ---------- Search row ---------- */
+  .cm-top{display:flex;align-items:center;gap:12px;height:48px;padding:0 16px;border-bottom:1px solid #F0F0F0}
+  .cm-top i.ri-search-2-line{font-size:18px;color:#A3A3A3;line-height:1}
+  .cm-top input{flex:1;border:0;outline:0;background:transparent;
+    font-size:14px;line-height:20px;font-weight:400;color:#171717;letter-spacing:-0.006em}
+  .cm-top input::placeholder{color:#A3A3A3}
+
+  /* Canonical keycap */
+  .kbd{display:inline-flex;align-items:center;gap:2px;height:22px;padding:0 7px;
+    border:1px solid #EBEBEB;border-bottom-color:#D1D1D1;border-radius:6px;
+    background:#F7F7F7;
+    box-shadow:inset 0 -1px 0 rgba(23,23,23,0.02);
+    font-family:'Geist',ui-sans-serif,system-ui,sans-serif;
+    font-size:11px;line-height:1;font-weight:500;color:#7B7B7B;letter-spacing:0.02em;white-space:nowrap}
+  .kbd .cmd{font-size:12px;font-weight:500;margin-right:1px;transform:translateY(-0.5px)}
+
+  .cm-top .x{width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;color:#A3A3A3;cursor:pointer;font-size:14px;border-radius:4px}
+  .cm-top .x:hover{background:#F5F5F5;color:#5C5C5C}
+
+  /* ---------- Sections ---------- */
+  .section{padding:14px 10px 10px}
+  .section + .section{padding-top:14px;border-top:1px solid #F5F5F5;margin-top:2px}
+
+  /* Sentence-case section title, understated */
+  .section-title{display:flex;justify-content:space-between;align-items:center;
+    padding:0 6px 8px;
+    font-size:11px;line-height:16px;font-weight:500;color:#A3A3A3;letter-spacing:0}
+  .section-title .more{color:#5C5C5C;font-weight:500;cursor:pointer}
+  .section-title .more:hover{color:#171717}
+
+  /* ---------- Filter pills (softer, no border) ---------- */
+  .tag-row{display:flex;flex-wrap:wrap;gap:4px;padding:0 6px 8px}
+  .tag{display:inline-flex;align-items:center;gap:5px;height:22px;padding:0 9px;border-radius:999px;
+    background:#F5F5F5;color:#5C5C5C;
+    font-size:11px;line-height:1;font-weight:500;letter-spacing:-0.006em;cursor:pointer;
+    transition:background .12s, color .12s}
+  .tag:hover{background:#EBEBEB;color:#171717}
+  .tag .x{color:#A3A3A3;font-size:12px;line-height:1;margin-left:1px}
+  .tag:hover .x{color:#5C5C5C}
+
+  /* ---------- Items ---------- */
+  .item{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:8px;cursor:pointer;transition:background .12s}
+  .item + .item{margin-top:4px}
+  .item:hover{background:#F5F5F5}
+
+  /* Small, quiet avatar */
+  .avatar{width:22px;height:22px;border-radius:999px;background:#F0F0F0;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:9px;line-height:1;font-weight:600;color:#7B7B7B;letter-spacing:0.02em;
+    position:relative;flex-shrink:0}
+  .avatar.online::after{content:'';position:absolute;bottom:-1px;right:-1px;width:6px;height:6px;border-radius:999px;background:#1DAF61;border:1.5px solid #fff}
+  .avatar.away::after{content:'';position:absolute;bottom:-1px;right:-1px;width:6px;height:6px;border-radius:999px;background:#F6B51E;border:1.5px solid #fff}
+
+  .item .label{font-size:13px;line-height:20px;font-weight:500;color:#171717;letter-spacing:-0.006em;
+    overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .item .handle{font-size:12px;line-height:20px;font-weight:400;color:#A3A3A3;letter-spacing:-0.006em;flex-shrink:0}
+  .item i.trail{margin-left:auto;color:#C5C5C5;font-size:13px;line-height:1;opacity:0;transition:opacity .12s}
+  .item:hover i.trail{opacity:1}
+
+  /* Selected row — darker + subtle inset ring, clearly distinct from hover */
+  .item.sel{background:#EBEBEB;box-shadow:inset 0 0 0 1px rgba(23,23,23,0.04)}
+  .item.sel:hover{background:#E5E5E5}
+  .item.sel i.trail{opacity:1;color:#5C5C5C}
+
+  /* ---------- Footer ---------- */
+  .footer{display:flex;justify-content:space-between;align-items:center;
+    padding:8px 14px;border-top:1px solid #F0F0F0;background:#FAFAFA;
+    font-size:11px;line-height:16px;font-weight:400;color:#7B7B7B;letter-spacing:-0.006em}
+  .fkey{display:inline-flex;align-items:center;gap:5px}
+  .fkey + .fkey{margin-left:14px}
+  .fkey .k{min-width:22px;height:22px;padding:0 7px;display:inline-flex;align-items:center;justify-content:center;
+    border:1px solid #EBEBEB;border-bottom-color:#D1D1D1;border-radius:6px;background:#F7F7F7;
+    box-shadow:inset 0 -1px 0 rgba(23,23,23,0.02);
+    font-family:'Geist',ui-sans-serif,system-ui,sans-serif;
+    font-size:11px;line-height:1;font-weight:500;color:#7B7B7B;letter-spacing:0.02em}
+  .footer .right{color:#5C5C5C;font-weight:500;cursor:pointer}
+  .footer .right:hover{color:#171717}
+</style></head>
+<body>
+<div class="cm">
+  <div class="cm-top">
+    <i class="ri-search-2-line"></i>
+    <input placeholder="Search or jump to…" value="pricing">
+    <span class="kbd"><span class="cmd">⌘</span>K</span>
+    <span class="x"><i class="ri-close-line"></i></span>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Narrow by</div>
+    <div class="tag-row">
+      <span class="tag">Maps <span class="x">×</span></span>
+      <span class="tag">Deliverables <span class="x">×</span></span>
+      <span class="tag">People <span class="x">×</span></span>
+      <span class="tag">Sources <span class="x">×</span></span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Recent<span class="more">See all</span></div>
+    <div class="item sel">
+      <span class="avatar">Q3</span>
+      <div class="label">Q3 go-to-market positioning</div>
+      <span class="handle">Map</span>
+      <i class="trail ri-corner-down-left-line"></i>
+    </div>
+    <div class="item">
+      <span class="avatar">PM</span>
+      <div class="label">Pricing memo v3</div>
+      <span class="handle">Deliverable</span>
+      <i class="trail ri-corner-down-left-line"></i>
+    </div>
+  </div>
+
+  <div class="section" style="padding-bottom:14px">
+    <div class="section-title">People<span class="more">See all</span></div>
+    <div class="item">
+      <span class="avatar online">PP</span>
+      <div class="label">Priya Patel</div>
+      <span class="handle">Strategy</span>
+      <i class="trail ri-corner-down-left-line"></i>
+    </div>
+    <div class="item">
+      <span class="avatar online">MJ</span>
+      <div class="label">Marcus Jensen</div>
+      <span class="handle">Research</span>
+      <i class="trail ri-corner-down-left-line"></i>
+    </div>
+    <div class="item">
+      <span class="avatar away">LN</span>
+      <div class="label">Lena Nguyen</div>
+      <span class="handle">Product</span>
+      <i class="trail ri-corner-down-left-line"></i>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div style="display:flex;align-items:center">
+      <span class="fkey"><span class="k">↑</span><span class="k">↓</span> Navigate</span>
+      <span class="fkey"><span class="k">↵</span> Select</span>
+      <span class="fkey"><span class="k">esc</span> Close</span>
+    </div>
+    <span class="right">Help</span>
+  </div>
+</div>
+</body></html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css"><style>
+  body{margin:0;padding:24px 20px;background:#F7F7F7;font-family:var(--font-sans)}
+  .row{display:flex;gap:24px;align-items:center;justify-content:space-around}
+  .tok{display:flex;flex-direction:column;align-items:center;gap:12px}
+  .sq{width:64px;height:64px;background:#fff;border-radius:12px}
+  /* Figma: /Shadow/x-small */
+  .xs{box-shadow:0 1px 2px 0 rgba(10,13,20,0.03)}
+  /* Figma: /Shadow/small - card rest */
+  .sm{box-shadow:0 2px 4px -2px rgba(23,23,23,0.06), 0 4px 8px -2px rgba(23,23,23,0.04)}
+  /* Figma: /Shadow/medium - floating, 0 16 32 -12 @ 10% */
+  .md{box-shadow:0 16px 32px -12px rgba(14,18,27,0.10)}
+  /* Figma: /Shadow/large - stacked 6-layer */
+  .lg{box-shadow:0 0 0 1px rgba(23,23,23,0.04), 0 1px 1px -0.5px rgba(23,23,23,0.04), 0 3px 3px -1.5px rgba(23,23,23,0.04), 0 6px 6px -3px rgba(23,23,23,0.04), 0 10px 10px -5px rgba(23,23,23,0.04), 0 20px 20px -10px rgba(23,23,23,0.04)}
+  /* Figma: focus ring - 2px outline + 1px border */
+  .focus{box-shadow:0 0 0 2px #fff, 0 0 0 4px #171717}
+  .meta{font:500 11px/14px var(--font-mono);color:var(--fg-2);text-align:center}
+  .name{font:500 11px/14px var(--font-sans);color:var(--fg);letter-spacing:-0.006em}
+</style></head><body>
+  <div class="row">
+    <div class="tok"><div class="sq xs"></div><div class="meta"><div class="name">X-Small</div>rest · inputs</div></div>
+    <div class="tok"><div class="sq sm"></div><div class="meta"><div class="name">Small</div>hover · cards</div></div>
+    <div class="tok"><div class="sq md"></div><div class="meta"><div class="name">Medium</div>floating</div></div>
+    <div class="tok"><div class="sq lg"></div><div class="meta"><div class="name">Large</div>menu · popover</div></div>
+    <div class="tok"><div class="sq focus"></div><div class="meta"><div class="name">Focus</div>keyboard</div></div>
+  </div>
+</body></html>

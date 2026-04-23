@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../colors_and_type.css"><style>
+  body{margin:0;padding:20px;background:var(--surface);display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+  .state{border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden}
+  .bar{display:flex;height:48px}
+  .cell{flex:1;display:flex;align-items:flex-end;padding:6px 8px;font:500 10px/12px var(--font-mono);color:rgba(0,0,0,0.55)}
+  .cell.dark{color:#fff}
+  .meta{padding:10px 12px;display:flex;justify-content:space-between;align-items:center}
+  .name{font:500 13px/16px var(--font-sans);color:var(--fg)}
+  .code{font:500 11px/14px var(--font-mono);color:var(--fg-2)}
+</style></head><body>
+  <div class="state">
+    <div class="bar">
+      <div class="cell" style="background:#FFEBEC">lighter</div>
+      <div class="cell" style="background:#FFC0C5">light</div>
+      <div class="cell dark" style="background:#FB3748">base</div>
+      <div class="cell dark" style="background:#681219">dark</div>
+    </div>
+    <div class="meta"><span class="name">Error</span><span class="code">#FB3748</span></div>
+  </div>
+  <div class="state">
+    <div class="bar">
+      <div class="cell" style="background:#FFFAEB">lighter</div>
+      <div class="cell" style="background:#FFECC0">light</div>
+      <div class="cell" style="background:#F6B51E">base</div>
+      <div class="cell dark" style="background:#624C18">dark</div>
+    </div>
+    <div class="meta"><span class="name">Warning</span><span class="code">#F6B51E</span></div>
+  </div>
+  <div class="state">
+    <div class="bar">
+      <div class="cell" style="background:#E3F7EC">lighter</div>
+      <div class="cell" style="background:#C2F5DA">light</div>
+      <div class="cell dark" style="background:#1DAF61">base</div>
+      <div class="cell dark" style="background:#0B4627">dark</div>
+    </div>
+    <div class="meta"><span class="name">Success</span><span class="code">#1DAF61</span></div>
+  </div>
+</body></html>

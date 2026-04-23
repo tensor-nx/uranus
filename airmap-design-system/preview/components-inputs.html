@@ -1,0 +1,225 @@
+<!DOCTYPE html><html><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+<style>
+  /*
+    Inputs — rebalanced to sit alongside Medium buttons (32px).
+    ─────────────────────────────────────────────────────────
+    Field height:            40px   (one notch above Medium button)
+    Field radius:            8px    (matches button radius 7/8)
+    Label:                   13/18 weight 500
+    Optional tag:            13/18 weight 400 gray-500
+    Value / placeholder:     14/20 weight 500
+    Hint / helper:            12/16 weight 400
+    Icon:                    18×18
+  */
+  :root {
+    --ink:#171717;
+    --ink-2:#404040;
+    --gray-500:#7B7B7B;
+    --gray-400:#A3A3A3;
+    --gray-300:#D1D1D1;
+    --gray-200:#EBEBEB;
+    --gray-150:#F0F0F0;
+    --gray-100:#F5F5F5;
+    --gray-50:#F7F7F7;
+    --white:#FFFFFF;
+    --error:#FB3748;
+    --error-bg:#FFF5F6;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;padding:22px 24px;background:#F7F7F7;
+    font-family:var(--font-sans,'Geist',sans-serif);color:var(--ink);
+    -webkit-font-smoothing:antialiased;letter-spacing:-0.006em;
+  }
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px 22px;max-width:840px}
+
+  .field{display:flex;flex-direction:column;gap:6px}
+
+  /* Label — 13/18 weight 500 */
+  .label{
+    display:flex;align-items:baseline;gap:6px;
+    font-size:13px;line-height:18px;font-weight:500;color:var(--ink);letter-spacing:-0.006em;
+  }
+  .label .opt{font-weight:400;color:var(--gray-500)}
+
+  /* Input shell — 40px height, 8px radius */
+  .input{
+    display:flex;align-items:center;gap:9px;
+    height:40px;padding:0 12px;
+    background:var(--white);
+    border:1px solid var(--gray-200);
+    border-radius:8px;
+    box-shadow:0 1px 0 rgba(23,23,23,0.02);
+    transition:border-color .12s, box-shadow .12s, background .12s;
+  }
+  .input:hover{border-color:var(--gray-300)}
+
+  /* Value / placeholder — 14/20 weight 500 */
+  .input input{
+    flex:1;min-width:0;border:0;outline:0;background:transparent;
+    font-size:14px;line-height:20px;font-weight:500;
+    color:var(--ink);letter-spacing:-0.006em;
+    font-family:inherit;
+  }
+  .input input::placeholder{color:var(--gray-400);font-weight:500}
+  .input input[readonly]{cursor:default}
+
+  /* Icons — 18px (between the old 20 and 16) */
+  .input .ri{font-size:18px;line-height:1;color:var(--gray-500);flex-shrink:0;transition:color .12s}
+  .input:hover .ri{color:var(--ink-2)}
+  .input .ri.trail{color:var(--gray-400)}
+
+  /* States */
+  .input.focus{
+    border-color:var(--ink);
+    box-shadow:0 0 0 3px rgba(23,23,23,0.08);
+  }
+  .input.focus .ri{color:var(--ink)}
+
+  .input.error{border-color:var(--error);background:var(--error-bg)}
+  .input.error .ri{color:var(--error)}
+
+  .input.disabled{background:var(--gray-50);border-color:var(--gray-200);box-shadow:none}
+  .input.disabled input{color:var(--gray-400);cursor:not-allowed}
+  .input.disabled .ri{color:var(--gray-300)}
+
+  /* Hint — 12/16 weight 400 */
+  .hint{
+    font-size:12px;line-height:16px;font-weight:400;
+    color:var(--gray-500);letter-spacing:0;padding-left:2px;
+  }
+  .hint.err{color:var(--error)}
+  .hint.err i{font-size:13px;line-height:1;vertical-align:-2px;margin-right:4px}
+
+  /* Canonical keycap — matches design-system spec */
+  .shortcut{
+    display:inline-flex;align-items:center;gap:2px;
+    height:22px;padding:0 7px;
+    border:1px solid var(--gray-200);border-bottom-color:var(--gray-300);
+    border-radius:6px;background:var(--gray-50);
+    box-shadow:inset 0 -1px 0 rgba(23,23,23,0.02);
+    font-family:'Geist', ui-sans-serif, system-ui, sans-serif;
+    font-size:11px;line-height:1;font-weight:500;
+    color:var(--gray-500);letter-spacing:0.02em;white-space:nowrap;flex-shrink:0;
+  }
+  .shortcut .cmd{font-size:12px;font-weight:500;margin-right:1px;transform:translateY(-0.5px)}
+
+  /* Chip for tag input */
+  .chip{
+    display:inline-flex;align-items:center;gap:5px;
+    height:24px;padding:0 4px 0 9px;border-radius:999px;
+    background:var(--gray-100);color:var(--ink);
+    font-size:12px;line-height:1;font-weight:500;letter-spacing:-0.006em;
+  }
+  .chip .x{
+    width:16px;height:16px;border-radius:999px;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:var(--gray-400);font-size:12px;line-height:1;cursor:pointer;
+  }
+  .chip .x:hover{background:var(--gray-200);color:var(--ink)}
+
+  .tags-input{flex-wrap:wrap;height:auto;min-height:40px;padding:6px 10px;gap:6px;align-items:center}
+  .tags-input input{min-width:90px;height:24px}
+
+  /* Affordance (password eye, etc.) — 24×24 hit target */
+  .input .aff{
+    width:24px;height:24px;border-radius:6px;
+    display:inline-flex;align-items:center;justify-content:center;
+    color:var(--gray-400);cursor:pointer;flex-shrink:0;margin-right:-4px;
+    transition:background .12s, color .12s;
+  }
+  .input .aff:hover{background:var(--gray-100);color:var(--gray-500)}
+  .input .aff .ri{font-size:16px;color:inherit}
+</style></head>
+<body>
+  <div class="grid">
+
+    <!-- Placeholder -->
+    <div class="field">
+      <div class="label">Map title <span class="opt">Optional</span></div>
+      <div class="input">
+        <input placeholder="Untitled map">
+      </div>
+    </div>
+
+    <!-- Filled -->
+    <div class="field">
+      <div class="label">Map title</div>
+      <div class="input">
+        <input value="Q3 go-to-market positioning">
+      </div>
+    </div>
+
+    <!-- Focused -->
+    <div class="field">
+      <div class="label">Map title</div>
+      <div class="input focus">
+        <input value="Q3 go-to-market positioning">
+      </div>
+      <div class="hint">Focused</div>
+    </div>
+
+    <!-- Search -->
+    <div class="field">
+      <div class="label">Search</div>
+      <div class="input">
+        <i class="ri ri-search-2-line"></i>
+        <input placeholder="Search maps, notes, deliverables…">
+        <span class="shortcut"><span class="cmd">⌘</span>K</span>
+      </div>
+    </div>
+
+    <!-- Password -->
+    <div class="field">
+      <div class="label">Password</div>
+      <div class="input">
+        <i class="ri ri-lock-2-line"></i>
+        <input type="password" value="••••••••••••">
+        <span class="aff" title="Show password"><i class="ri ri-eye-line"></i></span>
+      </div>
+    </div>
+
+    <!-- Select -->
+    <div class="field">
+      <div class="label">Workspace</div>
+      <div class="input">
+        <input value="Acme Strategy" readonly>
+        <i class="ri ri-arrow-down-s-line trail"></i>
+      </div>
+    </div>
+
+    <!-- Error -->
+    <div class="field">
+      <div class="label">Workspace URL</div>
+      <div class="input error">
+        <input value="acme workspace">
+        <i class="ri ri-error-warning-fill"></i>
+      </div>
+      <div class="hint err"><i class="ri ri-information-line"></i>Workspace names can't contain spaces.</div>
+    </div>
+
+    <!-- Disabled -->
+    <div class="field">
+      <div class="label">Owner</div>
+      <div class="input disabled">
+        <i class="ri ri-lock-line"></i>
+        <input value="priya@acme.com" disabled>
+      </div>
+      <div class="hint">Workspace admins only.</div>
+    </div>
+
+    <!-- Tag input -->
+    <div class="field">
+      <div class="label">Topics <span class="opt">Optional</span></div>
+      <div class="input tags-input">
+        <span class="chip">Pricing <span class="x"><i class="ri ri-close-line"></i></span></span>
+        <span class="chip">Positioning <span class="x"><i class="ri ri-close-line"></i></span></span>
+        <input placeholder="Add topic…">
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

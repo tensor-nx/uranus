@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Airmap — App UI Kit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../colors_and_type.css">
+  <link rel="stylesheet" href="kit.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="Icons.jsx"></script>
+  <script type="text/babel" src="Components.jsx"></script>
+  <script type="text/babel" src="Screens.jsx"></script>
+
+  <script type="text/babel">
+    function App() {
+      const saved = typeof localStorage !== "undefined" ? localStorage.getItem("airmap-screen") : null;
+      const [screen, setScreen] = React.useState(saved || "map");
+      const [active, setActive] = React.useState("q3");
+
+      React.useEffect(() => {
+        try { localStorage.setItem("airmap-screen", screen); } catch(e){}
+      }, [screen]);
+
+      const breadcrumb = {
+        empty: ["Acme", "Home"],
+        map: ["Acme", "Strategy", "Q3 positioning"],
+        deliverable: ["Acme", "Deliverables", "Go-to-market narrative"],
+      }[screen];
+
+      const onNav = (id) => {
+        setActive(id);
+        if (id === "narrative" || id === "icp") setScreen("deliverable");
+        else if (id === "newmap") setScreen("empty");
+        else setScreen("map");
+      };
+
+      return (
+        <>
+          <div className={"app " + (screen === "map" || screen === "deliverable" ? "with-context" : "")}>
+            <AppBar breadcrumb={breadcrumb}/>
+            <Sidebar active={active} onNav={onNav}/>
+            <main className="center" data-screen-label={
+              screen === "empty" ? "01 Empty" : screen === "map" ? "02 Map" : "03 Deliverable"
+            }>
+              {screen === "empty" && <EmptyScreen onNewMap={() => { setActive("q3"); setScreen("map"); }}/>}
+              {screen === "map" && <MapScreen/>}
+              {screen === "deliverable" && <DeliverableScreen/>}
+            </main>
+            {(screen === "map" || screen === "deliverable") && <ContextPanel/>}
+          </div>
+
+          <div className="screen-switcher">
+            <button className={screen==="empty"?"on":""} onClick={() => setScreen("empty")}>Empty</button>
+            <button className={screen==="map"?"on":""} onClick={() => setScreen("map")}>Map</button>
+            <button className={screen==="deliverable"?"on":""} onClick={() => setScreen("deliverable")}>Deliverable</button>
+          </div>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App/>);
+  </script>
+</body>
+</html>
