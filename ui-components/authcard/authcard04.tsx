@@ -1,0 +1,180 @@
+'use client';
+
+import * as React from 'react';
+import { RiEyeLine, RiEyeOffLine } from '@remixicon/react';
+
+import * as Checkbox from '@/components/ui/checkbox';
+import * as Divider from '@/components/ui/divider';
+import * as FancyButton from '@/components/ui/fancy-button';
+import * as Input from '@/components/ui/input';
+import * as Label from '@/components/ui/label';
+import * as LinkButton from '@/components/ui/link-button';
+import * as SocialButton from '@/components/ui/social-button';
+
+function IconLinkedin({ ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width='32'
+      height='32'
+      viewBox='0 0 32 32'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M25.3333 4H6.66667C5.19333 4 4 5.19333 4 6.66667V25.3333C4 26.8067 5.19333 28 6.66667 28H25.3333C26.8067 28 28 26.8067 28 25.3333V6.66667C28 5.19333 26.8067 4 25.3333 4ZM11.2567 24.6667H7.67667V13.11H11.2567V24.6667ZM9.45 11.5967C8.28 11.5967 7.33333 10.6433 7.33333 9.46333C7.33333 8.28333 8.28 7.33 9.45 7.33C10.62 7.33 11.5667 8.28333 11.5667 9.46333C11.5667 10.6433 10.62 11.5967 9.45 11.5967ZM24.6667 24.6667H21.1067V18.6C21.1067 16.9367 20.4733 16.0067 19.16 16.0067C17.7267 16.0067 16.98 16.9733 16.98 18.6V24.6667H13.5467V13.11H16.98V14.6667C16.98 14.6667 18.0133 12.7567 20.4633 12.7567C22.9133 12.7567 24.67 14.2533 24.67 17.35V24.6667H24.6667Z'
+        fill='#0077B5'
+      />
+    </svg>
+  );
+}
+
+function IconApple({ ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width='32'
+      height='32'
+      viewBox='0 0 32 32'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <path
+        d='M22.5475 16.0837C22.5813 19.7157 25.7337 20.9243 25.7687 20.9397C25.742 21.0249 25.2649 22.6621 24.1078 24.3532C23.1074 25.8152 22.0693 27.2718 20.4338 27.302C18.8268 27.3316 18.3101 26.3491 16.4728 26.3491C14.6361 26.3491 14.062 27.2719 12.5408 27.3317C10.9622 27.3914 9.76003 25.7507 8.75145 24.294C6.69045 21.3143 5.11542 15.8742 7.23028 12.202C8.2809 10.3784 10.1584 9.22356 12.1963 9.19394C13.7465 9.16437 15.2097 10.2368 16.1573 10.2368C17.1044 10.2368 18.8825 8.9471 20.7517 9.13652C21.5342 9.16909 23.7308 9.45261 25.1412 11.5172C25.0276 11.5876 22.5203 13.0472 22.5475 16.0837ZM19.5274 7.16521C20.3655 6.15072 20.9296 4.73845 20.7757 3.33325C19.5676 3.38181 18.1068 4.13827 17.2403 5.15221C16.4637 6.0501 15.7836 7.48722 15.9671 8.86461C17.3136 8.96879 18.6892 8.18035 19.5274 7.16521Z'
+        fill='currentColor'
+      />
+    </svg>
+  );
+}
+
+function IconGoogle({ ...props }: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      width='32'
+      height='32'
+      viewBox='0 0 32 32'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      {...props}
+    >
+      <path
+        d='M16.2449 13.8184V18.4657H22.8349C22.5455 19.9602 21.6771 21.2257 20.3747 22.0766L24.3487 25.0985C26.6642 23.004 28 19.9276 28 16.273C28 15.4221 27.9221 14.6039 27.7773 13.8185L16.2449 13.8184Z'
+        fill='#4285F4'
+      />
+      <path
+        d='M5.3137 10.6221C4.47886 12.2366 4.00024 14.0584 4.00024 16.0002C4.00024 17.942 4.47886 19.7639 5.3137 21.3784C5.3137 21.3892 9.388 18.2802 9.388 18.2802C9.14311 17.5602 8.99835 16.7966 8.99835 16.0001C8.99835 15.2036 9.14311 14.44 9.388 13.72L5.3137 10.6221Z'
+        fill='#FBBC05'
+      />
+      <path
+        d='M16.2448 8.77821C18.0482 8.77821 19.6511 9.3891 20.9313 10.5673L24.4378 7.13097C22.3116 5.18917 19.551 4 16.2448 4C11.4582 4 7.32833 6.69456 5.31348 10.6219L9.38766 13.7201C10.3561 10.8837 13.0611 8.77821 16.2448 8.77821Z'
+        fill='#EA4335'
+      />
+      <path
+        d='M9.38238 18.2842L8.48609 18.9566L5.31348 21.3784C7.32833 25.2947 11.4579 28.0002 16.2445 28.0002C19.5506 28.0002 22.3224 26.9311 24.3484 25.0984L20.3744 22.0766C19.2835 22.7966 17.892 23.233 16.2445 23.233C13.0609 23.233 10.3559 21.1275 9.38739 18.2911L9.38238 18.2842Z'
+        fill='#34A853'
+      />
+    </svg>
+  );
+}
+
+export default function BlockAuthCard() {
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  return (
+    <div className='flex w-full max-w-[400px] flex-col gap-5 rounded-3xl bg-bg-white-0 p-6 shadow-regular-xs'>
+      <div className='flex flex-col items-center gap-5'>
+        <img
+          src='https://alignui.com/images/logo/apex.svg'
+          alt=''
+          className='size-14'
+        />
+        <div className='text-center'>
+          <div className='text-title-h6 text-text-strong-950'>Welcome back</div>
+          <div className='text-paragraph-sm text-text-sub-600'>
+            Please enter your details to login.
+          </div>
+        </div>
+      </div>
+
+      <div className='grid grid-cols-3 gap-3'>
+        <SocialButton.Root brand='apple' mode='stroke'>
+          <SocialButton.Icon as={IconApple} />
+        </SocialButton.Root>
+        <SocialButton.Root brand='google' mode='stroke'>
+          <SocialButton.Icon as={IconGoogle} />
+        </SocialButton.Root>
+        <SocialButton.Root brand='linkedin' mode='stroke'>
+          <SocialButton.Icon as={IconLinkedin} />
+        </SocialButton.Root>
+      </div>
+
+      <Divider.Root variant='line-text'>OR</Divider.Root>
+
+      <div className='flex flex-col gap-3'>
+        <div className='flex flex-col gap-1'>
+          <Label.Root htmlFor='email'>Email Address</Label.Root>
+          <Input.Root>
+            <Input.Wrapper>
+              <Input.Input
+                id='email'
+                type='email'
+                placeholder='hello@alignui.com'
+              />
+            </Input.Wrapper>
+          </Input.Root>
+        </div>
+
+        <div className='flex flex-col gap-1'>
+          <div className='flex items-center justify-between'>
+            <Label.Root htmlFor='password'>Password</Label.Root>
+            <button type='button' className='text-label-xs text-text-sub-600'>
+              Clear
+            </button>
+          </div>
+          <Input.Root>
+            <Input.Wrapper>
+              <Input.Input
+                id='password'
+                type={showPassword ? 'text' : 'password'}
+                placeholder='• • • • • • • • • • '
+              />
+              <button type='button' onClick={() => setShowPassword((s) => !s)}>
+                {showPassword ? (
+                  <RiEyeOffLine className='size-5 text-text-soft-400' />
+                ) : (
+                  <RiEyeLine className='size-5 text-text-soft-400' />
+                )}
+              </button>
+            </Input.Wrapper>
+          </Input.Root>
+        </div>
+      </div>
+
+      <div className='flex items-center justify-between'>
+        <div className='flex items-center gap-2'>
+          <Checkbox.Root id='c1' />
+          <Label.Root htmlFor='c1' className='text-paragraph-sm'>
+            Remember me
+          </Label.Root>
+        </div>
+
+        <LinkButton.Root variant='gray' size='medium'>
+          Forgot?
+        </LinkButton.Root>
+      </div>
+
+      <FancyButton.Root variant='primary' className='w-full'>
+        Login
+      </FancyButton.Root>
+
+      <div className='flex items-baseline justify-center gap-1 text-paragraph-sm text-text-sub-600'>
+        Don&apos;t have an account?
+        <LinkButton.Root variant='black' size='medium'>
+          Register
+        </LinkButton.Root>
+      </div>
+    </div>
+  );
+}
